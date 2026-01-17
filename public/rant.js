@@ -121,9 +121,14 @@ async function loadPosts() {
 async function submitPost(e) {
     if (e) e.preventDefault();
 
+    console.log('Submit post called');
+    
     const contentEl = document.getElementById('postContent');
     const imageEl = document.getElementById('postImage');
     const content = contentEl?.value.trim();
+
+    console.log('Content:', content);
+    console.log('API_BASE:', API_BASE);
 
     if (!content) {
         alert('Please enter a post before submitting');
@@ -246,10 +251,13 @@ async function deleteReply(postId, replyId) {
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing rant page');
     loadPosts();
 
     const form = document.getElementById('postForm');
+    console.log('Form found:', !!form);
     if (form) {
         form.addEventListener('submit', submitPost);
+        console.log('Submit handler attached');
     }
 });
