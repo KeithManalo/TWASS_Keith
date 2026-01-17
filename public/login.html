@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Valo.Rant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/jpeg" href="webimage/Valicon.jpg">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Valo.Rant</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="patch.html" class="nav-link">Patch</a></li>
+                <li><a href="agents.html" class="nav-link">Agents</a></li>
+                <li><a href="Rant.html" class="nav-link">Rant</a></li>
+            </ul>
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </nav>
+
+    <!-- Login/Register Section -->
+    <section class="login-section">
+        <div class="login-container">
+            <!-- Shown when user is logged in -->
+            <div class="logged-in-card" id="loggedInView" style="display: none;">
+                <div class="logged-in-content">
+                    <h2 class="welcome-title">Welcome Back!</h2>
+                    <p class="username-display" id="usernameDisplay"></p>
+                    <p class="logged-in-message">You are already logged in</p>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                    <a href="index.html" class="home-link">Go to Home</a>
+                </div>
+            </div>
+
+            <!-- Register and Login Forms -->
+            <div class="auth-wrapper" id="authView">
+                <!-- Registration Form -->
+                <div class="auth-box">
+                    <h2 class="form-title">New Ranter?</h2>
+                    <p class="form-subtitle">Create your account</p>
+                    <form class="register-form">
+                        <div class="form-group">
+                            <label for="register-username">Username</label>
+                            <input type="text" id="register-username" name="username" placeholder="Choose a username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" name="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" name="password" placeholder="Create a password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-confirm">Confirm Password</label>
+                            <input type="password" id="register-confirm" name="confirm" placeholder="Confirm your password" required>
+                        </div>
+
+                        <button type="submit" class="login-submit-btn">Register</button>
+                    </form>
+                </div>
+
+                <!-- Login Form -->
+                <div class="auth-box">
+                    <h2 class="form-title">Already Have an Account?</h2>
+                    <p class="form-subtitle">Login to your account</p>
+                    <form class="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                        </div>
+
+                        <button type="submit" class="login-submit-btn">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Register logic -->
+    <script src="login.js"></script>
+</body>
+</html>

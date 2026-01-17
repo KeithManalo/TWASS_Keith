@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valo.Ranting</title>
+    <link rel="icon" type="image/jpeg" href="webimage/Valicon.jpg">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Email service library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "9UdtM71xnE_IlUmoh",
+            });
+        })();
+    </script>
+    <script src="email.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Valo.Rant</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="patch.html" class="nav-link">Patch</a></li>
+                <li><a href="agents.html" class="nav-link">Agents</a></li>
+                <li><a href="Rant.html" class="nav-link">Rant</a></li>
+            </ul>
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="bg-layer bg-layer-1"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Valo.Ranting Community</h1>
+            <p class="hero-subtitle">Join the Casual Ranting experience</p>
+            <a href="Rant.html" class="switch-btn">Start Ranting</a>
+        </div>
+    </section>
+
+    <!-- Agent Showcase - 4 agents with selector -->
+    <section class="agent-section">
+        <div class="agent-container">
+            <!-- Radio buttons control which agent shows -->
+            <input type="radio" id="agent1" name="agent" class="agent-radio" checked>
+            <input type="radio" id="agent2" name="agent" class="agent-radio">
+            <input type="radio" id="agent3" name="agent" class="agent-radio">
+            <input type="radio" id="agent4" name="agent" class="agent-radio">
+            
+            <!-- Agent info (shown based on radio selection) -->
+            <div class="agent-description">
+                <div class="description-content desc-1">
+                    <h2 class="agent-name">Phoenix</h2>
+                    <p class="agent-role">Role: Duelist</p>
+                    <p class="agent-bio">Hailing from the United Kingdom, Phoenix's star power shines through in his fighting style, igniting the battlefield with flash and flare. Whether he's got backup or not, he'll rush into a fight on his own terms. A self-sufficient fragger who can heal himself and create space with his fire-based abilities.</p>
+                    <div class="agent-abilities">
+                        <h3>Abilities</h3>
+                        <ul>
+                            <li>Curvedball (C) - Equip a flare orb that takes a curving path and detonates briefly after throwing. Fire to curve the flare orb to the left, detonating and blinding any player who sees the orb. Alternate fire to curve the flare orb to the right.</li>
+                            <li>Hot Hands (Q) - Throw a fireball that explodes after a delay or upon impact with the ground. The fire zone damages enemies and heals Phoenix.</li>
+                            <li>Blaze (E) - Equip a flame wall. Fire to create a line of flame that moves forward, creating a wall of fire that blocks vision and damages players passing through it. Hold fire to bend the wall in the direction of your crosshair.</li>
+                            <li>Run It Back (X) - Instantly place a marker at Phoenix's location. While this ability is active, dying or allowing the timer to expire will end this ability and bring Phoenix back to this location with full health.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="description-content desc-2">
+                    <h2 class="agent-name">Brimstone</h2>
+                    <p class="agent-role">Role: Controller</p>
+                    <p class="agent-bio">Joining from the USA, Brimstone's orbital arsenal ensures his squad always has the advantage. His ability to deliver utility precisely and safely from anywhere makes him an unmatched commander. A strategic controller who provides long-range support and area denial for his team.</p>
+                    <div class="agent-abilities">
+                        <h3>Abilities</h3>
+                        <ul>
+                            <li>Sky Smoke (E) - Use your map to call in orbital deployment smokescreens that obscure vision. Click to set the locations, and confirm to launch the long-lasting smokescreens that will block vision in the selected area.</li>
+                            <li>Incendiary (Q) - Launch an incendiary grenade that deploys a damaging field of fire. The grenade can be thrown over walls and bounces off surfaces before detonating.</li>
+                            <li>Stim Beacon (C) - Target a nearby location to call in a Stim Beacon. All players in the area will receive a combat stim that increases fire rate, reload speed, and recoil recovery speed.</li>
+                            <li>Orbital Strike (X) - Use your map to target a location, launching a devastating orbital strike that pulses for high damage over several seconds. Players caught in the strike will take massive damage.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="description-content desc-3">
+                    <h2 class="agent-name">Sage</h2>
+                    <p class="agent-role">Role: Sentinel</p>
+                    <p class="agent-bio">The bastion of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight. A defensive support agent who excels at healing and area control.</p>
+                    <div class="agent-abilities">
+                        <h3>Abilities</h3>
+                        <ul>
+                            <li>Slow Orb (Q) - Cast out a radianite orb that breaks into a slowing field upon impact with the ground. All caught in the field are slowed, grounded, and make noise when moving.</li>
+                            <li>Barrier Orb (C) - Conjure a large, solid wall. Right-click to rotate the wall before casting. The wall can be destroyed by enemies, but it provides excellent cover and area denial.</li>
+                            <li>Healing Orb (E) - Heal an ally or yourself to full health over a few seconds. Sage can heal herself or teammates, making her essential for sustaining the team through rounds.</li>
+                            <li>Resurrection (X) - Target a friendly corpse. After a short delay, revive them with full health. This ultimate ability can completely turn the tide of a round by bringing back a fallen teammate.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="description-content desc-4">
+                    <h2 class="agent-name">Sova</h2>
+                    <p class="agent-role">Role: Initiator</p>
+                    <p class="agent-bio">Born from the eternal winter of Russia's tundra, Sova tracks, finds, and eliminates enemies with ruthless efficiency and precision. His custom bow and incredible scouting abilities ensure that even if you run, you cannot hide. A master of reconnaissance who reveals enemy positions and controls areas with his archery skills.</p>
+                    <div class="agent-abilities">
+                        <h3>Abilities</h3>
+                        <ul>
+                            <li>Shock Bolt (Q) - Fire an explosive bolt that emits a damaging pulse of static energy upon impact. The bolt can be charged to increase damage and can bounce off walls up to two times.</li>
+                            <li>Recon Bolt (E) - Fire a bolt that deploys a sonar emitter. The sonar pings reveal the location of nearby enemies caught in its line of sight. The bolt can be destroyed by enemies.</li>
+                            <li>Owl Drone (C) - Deploy and take control of a pilotable drone that can fire a dart that will Reveal enemies who are hit. The drone can be destroyed by enemies but provides valuable intel.</li>
+                            <li>Hunter's Fury (X) - Fire up to three deadly energy blasts that spear across the entire map. Each blast damages and reveals enemies caught in its path. Enemies can be hit multiple times if they're in the path of multiple blasts.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Large agent images -->
+            <div class="agent-display">
+                <div class="agent-image-wrapper">
+                    <div class="agent-main-image agent-main-1"></div>
+                    <div class="agent-main-image agent-main-2"></div>
+                    <div class="agent-main-image agent-main-3"></div>
+                    <div class="agent-main-image agent-main-4"></div>
+                </div>
+            </div>
+
+            <!-- Agent selector with thumbnails -->
+            <div class="agent-selector">
+                <h2 class="selector-title">Select Agent</h2>
+                <div class="agent-options">
+                    <label for="agent1" class="agent-option">
+                        <div class="option-image agent-1-img"></div>
+                        <span class="option-name">Phoenix</span>
+                    </label>
+                    
+                    <label for="agent2" class="agent-option">
+                        <div class="option-image agent-2-img"></div>
+                        <span class="option-name">Brimstone</span>
+                    </label>
+                    
+                    <label for="agent3" class="agent-option">
+                        <div class="option-image agent-3-img"></div>
+                        <span class="option-name">Sage</span>
+                    </label>
+                    
+                    <label for="agent4" class="agent-option">
+                        <div class="option-image agent-4-img"></div>
+                        <span class="option-name">Sova</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-section">
+        <div class="contact-wrapper">
+            <h2 class="contact-title">Get In Touch</h2>
+            <p class="contact-description">I meant send a message not actual Touching</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your name" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="6" placeholder="Your message..." required></textarea>
+                </div>
+                
+                <button type="submit" class="form-btn">Send Message</button>
+            </form>
+            
+            <div class="contact-footer">
+                <p>Or email us directly: <a href="">7thTest@email.com</a></p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

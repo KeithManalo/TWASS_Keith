@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valo.Ranting</title>
+    <link rel="icon" type="image/jpeg" href="webimage/Valicon.jpg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Valo.Rant</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="patch.html" class="nav-link">Patch</a></li>
+                <li><a href="agents.html" class="nav-link">Agents</a></li>
+                <li><a href="Rant.html" class="nav-link">Rant</a></li>
+            </ul>
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </nav>
+
+    <!-- Rants Page (Background: HP3.jpg) -->
+    <section class="page-section rant-page">
+        <div class="page-container">
+            <h1 class="page-title">Rants and Posts</h1>
+            <p class="page-subtitle">Express anything on your mind</p>
+            
+            <!-- Create new post -->
+            <div class="post-form-container">
+                <h2>Create a New Post</h2>
+                <form id="postForm" class="post-form">
+                    <textarea id="postContent" placeholder="Write your rant or comment here..." rows="5" required></textarea>
+                    <label for="postImage">Upload an image</label>
+                    <input type="file" id="postImage" accept="image/*">
+                    <button type="submit" class="submit-btn">Post</button>
+                </form>
+            </div>
+            
+            <!-- Posts loaded here -->
+            <div class="posts-container">
+                <h2>Posts & Comments</h2>
+                <div id="postsDisplay" class="posts-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Posts logic -->
+    <script src="rant.js"></script>
+</body>
+</html>
+

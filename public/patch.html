@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valo.Ranting</title>
+    <link rel="icon" type="image/jpeg" href="webimage/Valicon.jpg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Valo.Rant</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="patch.html" class="nav-link">Patch</a></li>
+                <li><a href="agents.html" class="nav-link">Agents</a></li>
+                <li><a href="Rant.html" class="nav-link">Rant</a></li>
+            </ul>
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </nav>
+
+    <!-- Patch Notes Page (Background: HP2.jpg) -->
+    <section class="page-section patch-page">
+        <div class="page-container">
+            <!-- YouTube video -->
+            <div class="patch-video-container">
+                <h2>Latest Video</h2>
+                <div class="video-wrapper">
+                    <iframe width="960" height="540" src="https://www.youtube.com/embed/iCHg9iCCrnc?si=jldqzsybwzqEKXF6" title="Patch Notes Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h1 class="page-title">Patch Notes</h1>
+            <p class="page-subtitle">Latest updates and changes to the game</p>
+            
+            <!-- Edit button (admin only) -->
+            <div class="patch-controls">
+                <button id="editModeBtn" class="edit-mode-btn">✎ Edit Mode</button>
+            </div>
+
+            <!-- Patch notes loaded here -->
+            <div class="patch-list" id="patchList"></div>
+        </div>
+    </section>
+
+    <!-- Patch notes logic -->
+    <script src="patch.js"></script>
+</body>
+</html>
+

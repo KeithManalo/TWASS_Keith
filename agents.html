@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valo.Ranting</title>
+    <link rel="icon" type="image/jpeg" href="webimage/Valicon.jpg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Valo.Rant</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="patch.html" class="nav-link">Patch</a></li>
+                <li><a href="agents.html" class="nav-link">Agents</a></li>
+                <li><a href="Rant.html" class="nav-link">Rant</a></li>
+            </ul>
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </nav>
+
+    <!-- Agents Page (Background: AgentSelect.jpg) -->
+    <section class="page-section agents-page">
+        <div class="agents-container">
+            <div class="agents-header">
+                <h1>Agent Finder</h1>
+                <p>Discover all Valorant agents and their unique abilities</p>
+            </div>
+
+            <!-- Search bar and role filter buttons -->
+            <div class="search-filter-section">
+                <input 
+                    type="text" 
+                    class="search-bar" 
+                    id="searchInput" 
+                    placeholder="Search agents by name..."
+                >
+                <div class="role-filters">
+                    <button class="role-btn active" data-role="all">All Roles</button>
+                    <button class="role-btn" data-role="Duelist">Duelist</button>
+                    <button class="role-btn" data-role="Initiator">Initiator</button>
+                    <button class="role-btn" data-role="Controller">Controller</button>
+                    <button class="role-btn" data-role="Sentinel">Sentinel</button>
+                </div>
+            </div>
+
+            <!-- Agents are dynamically loaded into this grid -->
+            <div id="agentsGrid" class="agents-grid">
+                <div class="loading">Loading agents...</div>
+            </div>
+
+            <!-- Error and no results messages -->
+            <div id="errorMessage" class="error" style="display: none;"></div>
+
+            <!-- Shown when no agents match search -->
+            <div id="noResults" class="no-results" style="display: none;">
+                No agents found matching your search.
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Details Popup -->
+    <div id="agentModal" class="agents-modal">
+        <div class="agents-modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="agents-modal-header">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="agents-modal-title">
+                    <h2 id="modalName"></h2>
+                    <p id="modalRole"></p>
+                </div>
+            </div>
+            <p class="modal-bio" id="modalBio"></p>
+            <div class="abilities-section">
+                <h3>Abilities</h3>
+                <div id="abilitiesList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent display logic -->
+    <script src="agents.js"></script>
+</body>
+</html>
