@@ -2,6 +2,9 @@
 // RANT PAGE - POSTS AND REPLIES (SERVER BACKED)
 // ========================================
 
+// API base (allow overriding for hosted frontend pointing to remote backend)
+const API_BASE = window.__API_BASE__ || '';
+
 // Get current logged in user
 const getCurrentUser = () => {
     try {
@@ -16,6 +19,9 @@ const isAdmin = () => !!getCurrentUser()?.isAdmin;
 
 // Get username or "Anonymous"
 const getAuthorName = () => getCurrentUser()?.username || 'Anonymous';
+
+// Helper to fetch API with optional base URL
+const apiFetch = (path, options = {}) => fetch(`${API_BASE}${path}`, options);
 
 // Escape user-generated text to avoid script injection in templates
 const escapeHtml = (str = '') => str
@@ -45,7 +51,7 @@ async function loadPosts() {
     if (!el) return;
 
     try {
-        const res = await fetch('/api/posts');
+        const res = await apiFetch('/api/posts');
         if (!res.ok) throw new Error('Failed to fetch posts');
 
         const posts = await res.json();
@@ -75,14 +81,13 @@ async function loadPosts() {
                 `;
             }).join('');
 
-            const replyBlock = getCurrentUser()
-                ? `
-                    <div class="reply-input-section">
-                        <input type="text" id="replyInput${p.id}" placeholder="Add a reply..." class="reply-input">
-                        <button onclick="submitReply(${p.id}, 'replyInput${p.id}')" class="submit-reply-btn">Reply</button>
-                    </div>
-                `
-                : '<p class="login-prompt"><a href="login.html">Login</a> to reply</p>';
+            const replyBlock = `
+                <div class="reply-input-section">
+                    <input type="text" id="replyInput${p.id}" placeholder="Add a reply..." class="reply-input">
+                    <button onclick="submitReply(${p.id}, 'replyInput${p.id}')" class="submit-reply-btn">Reply</button>
+                    ${getCurrentUser() ? '' : '<p class="login-prompt">Posting as Anonymous. <a href="login.html">Login</a> to use your name.</p>'}
+                </div>
+            `;
 
             return `
                 <article class="post">
@@ -116,11 +121,6 @@ async function loadPosts() {
 async function submitPost(e) {
     if (e) e.preventDefault();
 
-    if (!getCurrentUser()) {
-        alert('Please login to post');
-        return;
-    }
-
     const contentEl = document.getElementById('postContent');
     const imageEl = document.getElementById('postImage');
     const content = contentEl?.value.trim();
@@ -134,7 +134,7 @@ async function submitPost(e) {
         const imageFile = imageEl?.files?.[0];
         const imageData = imageFile ? await fileToDataUrl(imageFile) : null;
 
-        const res = await fetch('/api/posts', {
+        const res = await apiFetch('/api/posts', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -168,7 +168,7 @@ async function deletePost(postId) {
     if (!confirm('Are you sure you want to delete this post?')) return;
 
     try {
-        const res = await fetch(`/api/posts/${postId}`, {
+        const res = await apiFetch(`/api/posts/${postId}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ isAdmin: true })
@@ -187,11 +187,6 @@ async function deletePost(postId) {
 // ========================================
 
 async function submitReply(postId, inputId) {
-    if (!getCurrentUser()) {
-        alert('Please login to reply');
-        return;
-    }
-
     const input = document.getElementById(inputId);
     const content = input?.value.trim();
 
@@ -201,7 +196,7 @@ async function submitReply(postId, inputId) {
     }
 
     try {
-        const res = await fetch(`/api/posts/${postId}/reply`, {
+        const res = await apiFetch(`/api/posts/${postId}/reply`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -232,7 +227,7 @@ async function deleteReply(postId, replyId) {
     if (!confirm('Are you sure you want to delete this reply?')) return;
 
     try {
-        const res = await fetch(`/api/posts/${postId}/reply/${replyId}`, {
+        const res = await apiFetch(`/api/posts/${postId}/reply/${replyId}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ isAdmin: true })
