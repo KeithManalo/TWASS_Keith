@@ -70,40 +70,41 @@ async function loadPosts() {
             const repliesHtml = (p.replies || []).map((r) => {
                 const delR = admin ? `<button class="delete-post-btn delete-reply-btn" onclick="deleteReply(${p.id}, ${r.id})">🗑️ Delete</button>` : '';
                 return `
-                    <div class="reply">
-                        <div class="reply-header">
+                    <div class="reply-item">
+                        <div class="reply-meta">
                             <strong>${escapeHtml(r.author)}</strong>
-                            <span class="reply-time">${formatDate(r.timestamp)}</span>
+                            <span class="reply-date">${formatDate(r.timestamp)}</span>
+                            ${delR}
                         </div>
-                        <p>${escapeHtml(r.content)}</p>
-                        ${delR}
+                        <div class="reply-content">${escapeHtml(r.content)}</div>
                     </div>
                 `;
             }).join('');
 
             const replyBlock = `
                 <div class="reply-input-section">
-                    <input type="text" id="replyInput${p.id}" placeholder="Add a reply..." class="reply-input">
+                    <textarea id="replyInput${p.id}" placeholder="Write a reply..." class="reply-input" rows="3"></textarea>
                     <button onclick="submitReply(${p.id}, 'replyInput${p.id}')" class="submit-reply-btn">Reply</button>
-                    ${getCurrentUser() ? '' : '<p class="login-prompt">Posting as Anonymous. <a href="login.html">Login</a> to use your name.</p>'}
                 </div>
+                ${getCurrentUser() ? '' : '<p class="login-prompt" style="margin-top: 8px; font-size: 0.9em;">Posting as Anonymous. <a href="login.html">Login</a> to use your name.</p>'}
             `;
 
             return `
-                <article class="post">
+                <div class="post-item">
                     <div class="post-header">
-                        <h3>${escapeHtml(p.author)}</h3>
-                        <span class="post-time">${formatDate(p.timestamp)}</span>
+                        <strong>${escapeHtml(p.author)}</strong>
+                        <span class="post-date">${formatDate(p.timestamp)}</span>
                         ${del}
                     </div>
-                    <p class="post-content">${escapeHtml(p.content)}</p>
+                    <div class="post-content">${escapeHtml(p.content)}</div>
                     ${img}
-                    <div class="replies">
-                        <h4>Replies:</h4>
-                        ${repliesHtml || '<p class="no-replies">No replies yet</p>'}
-                        ${replyBlock}
+                    <div class="reply-section">
+                        ${repliesHtml || '<p class="no-replies">No replies yet.</p>'}
+                        <div class="reply-form">
+                            ${replyBlock}
+                        </div>
                     </div>
-                </article>
+                </div>
             `;
         });
 
