@@ -69,43 +69,34 @@ async function loadPosts() {
 
             const repliesHtml = (p.replies || []).map((r) => {
                 const delR = admin ? `<button class="delete-post-btn delete-reply-btn" onclick="deleteReply(${p.id}, ${r.id})">🗑️ Delete</button>` : '';
-                return `
-                    <div class="reply-item">
-                        <div class="reply-meta">
-                            <strong>${escapeHtml(r.author)}</strong>
-                            <span class="reply-date">${formatDate(r.timestamp)}</span>
-                            ${delR}
-                        </div>
-                        <div class="reply-content">${escapeHtml(r.content)}</div>
-                    </div>
-                `;
+                return `<div class="reply-item">
+                <div class="reply-meta">
+                    <strong>${escapeHtml(r.author)}</strong>
+                    <span class="reply-date">${formatDate(r.timestamp)}</span>
+                    ${delR}
+                </div>
+                <div class="reply-content">${escapeHtml(r.content)}</div>
+            </div>`;
             }).join('');
 
-            const replyBlock = `
-                <div class="reply-input-section">
-                    <textarea id="replyInput${p.id}" placeholder="Write a reply..." class="reply-input" rows="3"></textarea>
-                    <button onclick="submitReply(${p.id}, 'replyInput${p.id}')" class="submit-reply-btn">Reply</button>
-                </div>
-                ${getCurrentUser() ? '' : '<p class="login-prompt" style="margin-top: 8px; font-size: 0.9em;">Posting as Anonymous. <a href="login.html">Login</a> to use your name.</p>'}
-            `;
+            const replyInputId = `reply-input-${p.id}`;
 
-            return `
-                <div class="post-item">
-                    <div class="post-header">
-                        <strong>${escapeHtml(p.author)}</strong>
-                        <span class="post-date">${formatDate(p.timestamp)}</span>
-                        ${del}
-                    </div>
-                    <div class="post-content">${escapeHtml(p.content)}</div>
-                    ${img}
-                    <div class="reply-section">
-                        ${repliesHtml || '<p class="no-replies">No replies yet.</p>'}
-                        <div class="reply-form">
-                            ${replyBlock}
-                        </div>
+            return `<div class="post-item">
+                <div class="post-header">
+                    <strong>${escapeHtml(p.author)}</strong>
+                    <span class="post-date">${formatDate(p.timestamp)}</span>
+                    ${del}
+                </div>
+                <div class="post-content">${escapeHtml(p.content)}</div>
+                ${img}
+                <div class="reply-section">
+                    <div class="reply-list">${repliesHtml || '<p class="no-replies">No replies yet.</p>'}</div>
+                    <div class="reply-form">
+                        <textarea id="${replyInputId}" class="reply-input" rows="2" placeholder="Write a reply..."></textarea>
+                        <button class="reply-submit-btn" onclick="submitReply(${p.id}, '${replyInputId}')">Reply</button>
                     </div>
                 </div>
-            `;
+            </div>`;
         });
 
         el.innerHTML = html.join('');
